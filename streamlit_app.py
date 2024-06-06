@@ -1,4 +1,7 @@
+source your_virtual_env/bin/activate
 pip install matplotlib
+pip install -r requirements.txt
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
@@ -39,3 +42,6 @@ plt.tight_layout()
 # Display the chart in Streamlit
 st.subheader('Gráfico de Goles por Equipo')
 st.pyplot(fig)
+
+streamlit run streamlit_app.py
+
