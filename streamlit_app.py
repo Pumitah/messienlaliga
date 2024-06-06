@@ -2,43 +2,39 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
 
-# Definir la función para cargar y procesar datos
+# Define a function to load and process data
 def cargar_y_procesar_datos():
-    # Cargar datos desde CSV (asumiendo que está en el mismo directorio)
+    # Load data from CSV (assuming it's in the same directory)
     data = pd.read_csv('la_liga_data.csv')
 
-    # Agrupar por equipo y sumar goles
+    # Group by team and sum goals
     goles_por_equipo = data.groupby('Equipo')['Goles'].sum()
 
-    # Ordenar por goles de mayor a menor
+    # Sort by goals from highest to lowest
     goles_por_equipo = goles_por_equipo.sort_values(ascending=False)
 
-    # Devolver el DataFrame ordenado
+    # Return the sorted DataFrame
     return goles_por_equipo
-
-# Establecer el título de la aplicación
+# Set the app title
 st.title('Goles por Equipo en La Liga 2023-2024')
 
-# Cargar y procesar datos
+# Load and process data
 datos_goles = cargar_y_procesar_datos()
-
-# Mostrar la tabla de datos
+# Display data table
 st.subheader('Datos de Goles por Equipo')
 st.dataframe(datos_goles)
 
-# Crear gráfico de barras
+# Create bar chart
 fig, ax = plt.subplots(figsize=(10, 6))
 ax.bar(datos_goles.index, datos_goles.values, color='skyblue')
 
-# Personalizar el gráfico
+# Customize the chart
 ax.set_xlabel('Equipo')
 ax.set_ylabel('Goles Marcados')
 ax.set_title('Goles por Equipo en La Liga 2023-2024')
-ax.xticks(rotation=45, ha='right')  # Rotar etiquetas del eje X si hay muchos equipos
+ax.xticks(rotation=45, ha='right')  # Rotate x-axis labels if many teams
 plt.tight_layout()
 
-# Mostrar el gráfico en Streamlit
+# Display the chart in Streamlit
 st.subheader('Gráfico de Goles por Equipo')
 st.pyplot(fig)
-
-# Nota: Reemplaza 'la_liga_data.csv' con el nombre real de tu archivo CSV
