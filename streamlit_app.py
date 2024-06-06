@@ -1,4 +1,3 @@
-your_virtual_env\Scripts\activate.bat
 pip install matplotlib
 pip install -r requirements.txt
 
